@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  location: MyString
-  details: MyString
+  name: Pub One
+  location: {latlng: [123,123], locationText: "pub location"}
+  details: {darts: true, pool: true}
 
 two:
-  name: MyString
-  location: MyString
-  details: MyString
+  name: "Pub Two"
+  location: {latlng: [123,123], locationText: "pub location"}
+  details: {darts: false, pool: false}
