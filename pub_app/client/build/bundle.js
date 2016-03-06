@@ -48,13 +48,10 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
+	var MainView = __webpack_require__(159);
 
 	window.onload = function () {
-	  ReactDOM.render(React.createElement(
-	    'h1',
-	    null,
-	    ' React Start '
-	  ), document.getElementById('app'));
+	  ReactDOM.render(React.createElement(MainView, { url: 'http://localhost:3000/pubs' }), document.getElementById('app'));
 	};
 
 /***/ },
@@ -19657,6 +19654,87 @@
 
 	module.exports = __webpack_require__(3);
 
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var PubList = __webpack_require__(160);
+
+	var MainView = React.createClass({
+	  displayName: 'MainView',
+
+
+	  getInitialState: function getInitialState() {
+	    return { data: [] };
+	  },
+
+	  fetchPubs: function fetchPubs() {
+	    var request = new XMLHttpRequest();
+	    request.open("GET", this.props.url);
+	    request.onload = function () {
+	      if (request.status === 200) {
+	        var recievedPubs = JSON.parse(request.responseText);
+	        this.setState({ data: recievedPubs });
+	      }
+	    }.bind(this);
+	    request.send(null);
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this.fetchPubs();
+	    setInterval(this.fetchPubs, 1000);
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'mainView' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Pubs'
+	      ),
+	      React.createElement(PubList, { data: this.state.data })
+	    );
+	  }
+
+	});
+
+	module.exports = MainView;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var PubList = React.createClass({
+	  displayName: "PubList",
+
+	  render: function render() {
+
+	    var pubs = this.props.data.map(function (pub, index) {
+	      return React.createElement(
+	        "h4",
+	        null,
+	        pub.name
+	      );
+	    });
+
+	    return React.createElement(
+	      "div",
+	      { className: "pubList" },
+	      pubs
+	    );
+	  }
+	});
+	module.exports = PubList;
 
 /***/ }
 /******/ ]);
