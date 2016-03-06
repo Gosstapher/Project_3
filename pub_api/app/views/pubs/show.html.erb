@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pub.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @pub.location %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @pub.details %>
+</p>
+
+<%= link_to 'Edit', edit_pub_path(@pub) %> |
+<%= link_to 'Back', pubs_path %>
