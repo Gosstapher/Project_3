@@ -1,0 +1,78 @@
+{
+  name: "Brewdog Edinburgh", 
+  location: {
+    latlng: [55.948601, -3.189508],
+    locationText: "143 Cowgate, Edinburgh EH1 1JS"
+    }, 
+  details: {
+    draftBeerChoice: ["Punk IPA", "This is Lager", "5am Red Ale"], 
+    food: ["Pizza", "Meat and Cheese Platter"], 
+    familyFriendly: false, 
+    dogFriendly: false, 
+    activities: {
+      sportOnTv: false, 
+      darts: false, 
+      pool: false, 
+      quizMachine: false, 
+      pubQuiz: false, 
+      openMic: false, 
+      liveMusic: false, 
+      tablefootball: false, 
+      boardGames: true, 
+      other: ""
+    }
+  }
+},
+
+{
+  name: "Black Bull", 
+  location: {
+    latlng: [55.947454, -3.197416],
+    locationText: "12 Grassmarket, Old Town, Edinburgh EH1 2JU"
+    }, 
+  details: {
+    draftBeerChoice: ["Weihenstephaner", "Guinness", "Heineken"], 
+    food: ["Full Pub Grub Menu"], 
+    familyFriendly: false, 
+    dogFriendly: false, 
+    activities: {
+      sportOnTv: true, 
+      darts: false, 
+      pool: false, 
+      quizMachine: true, 
+      pubQuiz: true, 
+      openMic: false, 
+      liveMusic: true, 
+      tablefootball: false, 
+      boardGames: false, 
+      other: "Pub Quiz on Thursdays at 7:30pm"
+    }
+  }
+},
+
+{
+  name: "Royal Oak", 
+  location: {
+    latlng: [55.948061, -3.186167],
+    locationText: "1 Infirmary St, Edinburgh EH1 1LT"
+    }, 
+  details: {
+    draftBeerChoice: ["McEwan's 80/-", "Guinness", "Deuchars IPA"], 
+    food: ["Full Pub Grub Menu"], 
+    familyFriendly: false, 
+    dogFriendly: false, 
+    activities: {
+      sportOnTv: false, 
+      darts: false, 
+      pool: false, 
+      quizMachine: false, 
+      pubQuiz: false, 
+      openMic: true, 
+      liveMusic: true, 
+      tablefootball: false, 
+      boardGames: false, 
+      other: ""
+    }
+  }
+}
+

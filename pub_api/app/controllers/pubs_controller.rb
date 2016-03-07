@@ -18,8 +18,11 @@ class PubsController < ApplicationController
   # POST /pubs
   # POST /pubs.json
   def create
+    # console.log('params', params)
+    # console.log('pub_params', pub_params)
+    puts "pub params #{pub_params}"
     @pub = Pub.new(pub_params)
-
+    
     if @pub.save
       render json: @pub, status: :created, location: @pub
     else
@@ -31,6 +34,7 @@ class PubsController < ApplicationController
   # PATCH/PUT /pubs/1.json
   def update
     @pub = Pub.find(params[:id])
+
 
     if @pub.update(pub_params)
       head :no_content
@@ -54,6 +58,6 @@ class PubsController < ApplicationController
     end
 
     def pub_params
-      params.require(:pub).permit(:name, :location, :details)
+      params.require(:pub).permit!#(:name, :location => Hash, :details => Hash)
     end
 end
