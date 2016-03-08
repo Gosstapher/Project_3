@@ -19704,7 +19704,7 @@
 	      React.createElement(
 	        'h1',
 	        { id: 'title' },
-	        'Pubs'
+	        'Pubs of Dùn Èideann'
 	      ),
 	      React.createElement(
 	        'div',

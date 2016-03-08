@@ -35,7 +35,7 @@ var MainView = React.createClass({
   render: function() {
     return (
       <div className="mainView">
-        <h1 id="title">Pubs</h1>
+        <h1 id="title">Pubs of Dùn Èideann</h1>
         <div id="left-side">
           <div id="map">
           </div>
