@@ -1,5 +1,5 @@
 var React = require('react');
-
+var Map = require ('../Map/map.js');
 var PubList = React.createClass({
   render: function() {
 
