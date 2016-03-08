@@ -19663,6 +19663,7 @@
 
 	var React = __webpack_require__(1);
 	var PubList = __webpack_require__(160);
+	var Map = __webpack_require__(161);
 
 	var MainView = React.createClass({
 	  displayName: 'MainView',
@@ -19684,9 +19685,16 @@
 	    request.send(null);
 	  },
 
+	  createMap: function createMap() {
+	    var centre = { lat: 55.924734, lng: -3.184194 };
+	    var zoom = 11;
+	    var map = new Map(centre, zoom);
+	  },
+
 	  componentDidMount: function componentDidMount() {
 	    this.fetchPubs();
-	    setInterval(this.fetchPubs, 1000);
+	    // setInterval(this.fetchPubs, 1000);
+	    this.createMap();
 	  },
 
 	  render: function render() {
@@ -19695,10 +19703,19 @@
 	      { className: 'mainView' },
 	      React.createElement(
 	        'h1',
-	        null,
+	        { id: 'title' },
 	        'Pubs'
 	      ),
-	      React.createElement(PubList, { data: this.state.data })
+	      React.createElement(
+	        'div',
+	        { id: 'left-side' },
+	        React.createElement('div', { id: 'map' })
+	      ),
+	      React.createElement(
+	        'div',
+	        { id: 'right-side' },
+	        React.createElement(PubList, { data: this.state.data })
+	      )
 	    );
 	  }
 
@@ -19710,31 +19727,71 @@
 /* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
-
+	var Map = __webpack_require__(161);
 	var PubList = React.createClass({
-	  displayName: "PubList",
+	  displayName: 'PubList',
 
 	  render: function render() {
 
 	    var pubs = this.props.data.map(function (pub, index) {
 	      return React.createElement(
-	        "h4",
+	        'h4',
 	        null,
 	        pub.name
 	      );
 	    });
 
 	    return React.createElement(
-	      "div",
-	      { className: "pubList" },
+	      'div',
+	      { className: 'pubList' },
 	      pubs
 	    );
 	  }
 	});
 	module.exports = PubList;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var Map = function Map(latLng, zoomNum) {
+	  // var self = this;
+	  // this.markers = [];
+	  this.googleMap = new google.maps.Map(document.getElementById('map'), {
+	    center: latLng,
+	    zoom: zoomNum
+	  }), this.addMarker = function (latLng, title, icon) {
+	    var marker = new google.maps.Marker({
+	      position: latLng,
+	      map: this.googleMap,
+	      title: title,
+	      icon: icon
+	    });
+	    return marker;
+	    // this.markers.push(marker);
+	  }, this.bindClick = function () {
+	    google.maps.event.addListener(this.googleMap, 'click', function (event) {
+	      this.addInfoWindow({ lat: event.latLng.lat(), lng: event.latLng.lng() }, "meow!", "https://33.media.tumblr.com/avatar_e2fbfbcbb52d_128.png");
+	    }.bind(this));
+	  }, this.setCentre = function (latLng) {
+	    this.googleMap.setCenter(latLng);
+	  }, this.addInfoWindow = function (latLng, title, icon) {
+	    var marker = this.addMarker(latLng, title, icon);
+	    marker.addListener('click', function () {
+	      var infoWindow = new google.maps.InfoWindow({
+	        content: this.title
+	      });
+	      infoWindow.open(this.map, marker);
+	    });
+	  };
+	};
+
+	module.exports = Map;
 
 /***/ }
 /******/ ]);

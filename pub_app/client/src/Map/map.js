@@ -34,6 +34,7 @@ var Map = function(latLng, zoomNum){
   }
 }
 
+module.exports = Map;
 
 
 
