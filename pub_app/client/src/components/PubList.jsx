@@ -8,9 +8,12 @@ var PubList = React.createClass({
   render: function() {
     var pubs = this.props.data.map(function(pub, index) {
       return (
-        <h4>
+        <div>
+        <h3 id="pub-name">
           {pub.name}
-        </h4>       
+        </h3>       
+        <p>{pub.location.locationText}</p>
+        </div>
       );
     });
 

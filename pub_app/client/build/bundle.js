@@ -19776,9 +19776,18 @@
 	  render: function render() {
 	    var pubs = this.props.data.map(function (pub, index) {
 	      return React.createElement(
-	        'h4',
+	        'div',
 	        null,
-	        pub.name
+	        React.createElement(
+	          'h3',
+	          { id: 'pub-name' },
+	          pub.name
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          pub.location.locationText
+	        )
 	      );
 	    });
 
