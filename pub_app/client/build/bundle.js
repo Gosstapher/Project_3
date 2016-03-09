@@ -19686,8 +19686,8 @@
 	  },
 
 	  createMap: function createMap() {
-	    var centre = { lat: 55.924734, lng: -3.184194 };
-	    var zoom = 11;
+	    var centre = { lat: 55.936305, lng: -3.195873 };
+	    var zoom = 12;
 	    var map = new Map(centre, zoom);
 	  },
 
