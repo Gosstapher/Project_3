@@ -74,5 +74,31 @@
       other: ""
     }
   }
+},
+
+{
+  name: "Footlights", 
+  location: {
+    latlng: [55.946111, -3.203537],
+    locationText: "7 Spittal St, Edinburgh, Midlothian EH3 9DY"
+    }, 
+  details: {
+    draftBeerChoice: ["Tenants", "Guinness", "Deuchars IPA"], 
+    food: ["Full Pub Grub Menu"], 
+    familyFriendly: false, 
+    dogFriendly: false, 
+    activities: {
+      sportOnTv: true, 
+      darts: true, 
+      pool: true, 
+      quizMachine: true, 
+      pubQuiz: true, 
+      openMic: true, 
+      liveMusic: true, 
+      tablefootball: false, 
+      boardGames: false, 
+      other: ""
+    }
+  }
 }
 
