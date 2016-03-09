@@ -19670,7 +19670,7 @@
 
 
 	  getInitialState: function getInitialState() {
-	    return { data: [] };
+	    return { data: [], map: null };
 	  },
 
 	  fetchPubs: function fetchPubs() {
@@ -19689,15 +19689,53 @@
 	    var centre = { lat: 55.936305, lng: -3.195873 };
 	    var zoom = 12;
 	    var map = new Map(centre, zoom);
+	    this.setState({ map: map });
+	    // map.addMarker(centre);
+	  },
+
+	  addMarker: function addMarker(latlng) {
+	    var location = { lat: latlng[0], lng: latlng[1] };
+	    this.state.map.addMarker(location);
 	  },
 
 	  componentDidMount: function componentDidMount() {
 	    this.fetchPubs();
 	    // setInterval(this.fetchPubs, 1000);
 	    this.createMap();
+	    // this.addMarker();
 	  },
 
 	  render: function render() {
+	    if (this.state.map) {
+	      //remove all markers
+	      //if currentPub only show for that 
+	      //otherwise show markers for all pubs
+	      var _iteratorNormalCompletion = true;
+	      var _didIteratorError = false;
+	      var _iteratorError = undefined;
+
+	      try {
+	        for (var _iterator = this.state.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	          var pub = _step.value;
+
+	          this.addMarker(pub.location.latlng);
+	        }
+	      } catch (err) {
+	        _didIteratorError = true;
+	        _iteratorError = err;
+	      } finally {
+	        try {
+	          if (!_iteratorNormalCompletion && _iterator.return) {
+	            _iterator.return();
+	          }
+	        } finally {
+	          if (_didIteratorError) {
+	            throw _iteratorError;
+	          }
+	        }
+	      }
+	    }
+
 	    return React.createElement(
 	      'div',
 	      { className: 'mainView' },
@@ -19714,7 +19752,7 @@
 	      React.createElement(
 	        'div',
 	        { id: 'right-side' },
-	        React.createElement(PubList, { data: this.state.data })
+	        React.createElement(PubList, { data: this.state.data, map: this.state.map })
 	      )
 	    );
 	  }
@@ -19734,8 +19772,8 @@
 	var PubList = React.createClass({
 	  displayName: 'PubList',
 
-	  render: function render() {
 
+	  render: function render() {
 	    var pubs = this.props.data.map(function (pub, index) {
 	      return React.createElement(
 	        'h4',
